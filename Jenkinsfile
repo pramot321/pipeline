@@ -56,7 +56,8 @@ pipeline {
                      body: "Build got success check status @ ${env.BUILD_URL}"
                  
             }
-        }
+       }
+    }
     }
     }
     }
