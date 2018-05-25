@@ -15,6 +15,9 @@ pipeline {
 if (branchName == "master") {
               promoteStage()
               }
+		stage { 
+			steps {
+				scripts {
 
          def promoteStage(){
               // Stage: promote
@@ -37,6 +40,10 @@ if (branchName == "master") {
 			server.publishBuildInfo(buildInfo1)
 			}
 		    }
+		}
+					
+				}
+			}
 		}
 
 		def notifyQA(String buildStatus = 'STARTED') {
