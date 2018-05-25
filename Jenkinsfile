@@ -12,12 +12,14 @@ pipeline {
 		}
 	}
 	}
-if (branchName == "master") {
-              promoteStage()
-              }
 		stage { 
 			steps {
 				scripts {
+		
+if (branchName == "master") {
+              promoteStage()
+              }
+		
 
          def promoteStage(){
               // Stage: promote
