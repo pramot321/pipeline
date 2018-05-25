@@ -12,18 +12,19 @@ pipeline {
 		}
 	}
 	}
-		stage { 
-			steps {
-				scripts {
+		
 		
 if (branchName == "master") {
               promoteStage()
               }
 		
 
-         def promoteStage(){
+      //   def promoteStage(){
               // Stage: promote
                    stage ('Appprove to proceed'){	
+			   steps {
+				   script {
+			   
                        notifyQA()
 	               proceedConfirmation("proceed1","promote to Prod ?")
                   }
