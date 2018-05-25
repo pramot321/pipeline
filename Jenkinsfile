@@ -12,7 +12,7 @@ pipeline {
 		}
 	}
 	}
-if (branchName == "preprod") {
+if (branchName == "master") {
               promoteStage()
               }
 
