@@ -1,4 +1,4 @@
-preprod"
+branchName = "preprod"
 qaEmailId ="cjptech12@gmail.com"
 repositoryName = "dev"
 waitingTime = 24
