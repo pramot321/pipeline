@@ -1,52 +1,37 @@
-repositoryName = "test"
-env.BUILD_URL = "http://54.83.181.206:8081/artifactory/test/cjp-1.3-SNAPSHOT.jar"
-env.JOB_NAME= "test"
-pipeline {
+preprod"
+qaEmailId ="cjptech12@gmail.com"
+repositoryName = "dev"
+waitingTime = 24
+pipeline{
 	agent any
 	stages {
-	stage ('build') {
-		steps {
-			script {		
- 	
-             sh 'mvn clean package'
+		stage('Build'){
+		    steps
+                {
+                    script
+                    {
+			echo 'Hi Mahesh'
+                    }
+                }
 		}
 	}
-	}
-		
-		
-if (branchName == "master") {
+}
+              if (branchName == "preprod") {
               promoteStage()
               }
-		
 
-      //   def promoteStage(){
+         def promoteStage(){
               // Stage: promote
                    stage ('Appprove to proceed'){	
-			   steps {
-				   script {
-			   
                        notifyQA()
 	               proceedConfirmation("proceed1","promote to Prod ?")
                   }
-                  node{
+                  	node{
 	           stage ('Promote artifacts to Prod'){
-                   def server = Artifactory.server 'test'
-                   def uploadSpec  =  """{
-                   "files": [
-              {
-                                "pattern": "/var/lib/jenkins/workspace/test/target/cjp-1.3-SNAPSHOT.jar",
-                               "target": "${repositoryName}" 
-                            }
-                         ]
-                    }"""
-                def buildInfo1 = server.upload(uploadSpec)
-			server.publishBuildInfo(buildInfo1)
-			}
+	               			echo 'Hi Cloudjournee'
+
+	           }
 		    }
-		}
-					
-				}
-			}
 		}
 
 		def notifyQA(String buildStatus = 'STARTED') {
@@ -56,8 +41,8 @@ if (branchName == "master") {
 	        def subject = "QA: '${repositoryName}' artifact ready for promotion to Prod"
 	        def summary = "${subject} (${env.BUILD_URL})"
 	        def details = """
-	        <p>Job '${env.JOB_NAME} [/var/lib/jenkins/workspace/test/target/cjp-1.3-SNAPSHOT.jar]' is ready to be promoted from DEV to QA.</p>
-	        <p>Click here to move the library into the QA artifactory for testing. "<a href="${env.BUILD_URL}/input">${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>"</p>
+	        <p>Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' is ready to be promoted from DEV to QA.</p>
+	        <p>Click here to move the library into the QA artifactory for testing. "<a href="${env.BUILD_URL}/input">${env.JOB_NAME}[${env.BUILD_NUMBER}]/</a>"</p>
 	   """
 	        emailext body: details,mimeType: 'text/html', subject: subject, to: toList
                 }
@@ -97,8 +82,4 @@ if (branchName == "master") {
                 echo "Aborted by: [${user}]"
      }
    }
- } 
-	}
-}
-	
-   
+ }
