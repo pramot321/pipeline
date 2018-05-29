@@ -16,28 +16,8 @@ pipeline{
 		}
 
 
-stage('deploy') {
-            
-            steps {
-            script {
-                def server = Artifactory.server ('test')
-                               def uploadSpec  =  """{
-                    "files": [
-                {
-"/var/lib/jenkins/workspace/samplejob/target/sample-1.0-SNAPSHOT.jar"
-                  "target": "${repositoryName}" 
-                }
-                            ]
-                      }"""
-
-                        def buildInfo1 = server.upload(uploadSpec)
-                        server.publishBuildInfo(buildInfo1)
-	    }
-	    }
-}
 	}
 }
-	
 
 	
 
