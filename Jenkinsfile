@@ -16,7 +16,7 @@ pipeline{
 		}
 
 
-stage('pramote artifact to QA') {
+stage('deploy') {
             
             steps {
             script {
@@ -35,8 +35,8 @@ stage('pramote artifact to QA') {
 	    }
 	    }
 }
-	}
-}
+	
+
 	
 
               if (branchName == "preprod") {
@@ -106,4 +106,6 @@ stage('pramote artifact to QA') {
      }
    }
  }
+	}
+}
 	
