@@ -14,8 +14,8 @@ pipeline{
                     }
                 }
 		}
-	}
-}
+	
+
               if (branchName == "preprod") {
               promoteStage()
               }
@@ -83,3 +83,5 @@ pipeline{
      }
    }
  }
+	}
+}
