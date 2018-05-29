@@ -10,7 +10,7 @@ pipeline{
                 {
                     script
                     {
-			echo "hi mahesh"
+	sh 'mvn clean package'
                     }
                 }
 		}
