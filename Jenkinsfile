@@ -10,10 +10,12 @@ pipeline{
                 {
                     script
                     {
-			mvn clean package
+			echo "hi mahesh"
                     }
                 }
 		}
+	}
+}
 	
 
               if (branchName == "preprod") {
@@ -83,5 +85,4 @@ pipeline{
      }
    }
  }
-	}
-}
+	
