@@ -14,6 +14,27 @@ pipeline{
                     }
                 }
 		}
+
+
+stage('pramote artifact to QA') {
+            
+            steps {
+            script {
+                def server = Artifactory.server ('test')
+                               def uploadSpec  =  """{
+                    "files": [
+                {
+"/var/lib/jenkins/workspace/cdpipeline_pipeline_master-6TVSGNXQ6SI4IIJXN33VZIFJ5SY7VMJ63E3Z6WF7IEE62OHHCKGQ/target/CounterWebApp.war/",
+                  "target": "${repositoryName}" 
+                }
+                            ]
+                      }"""
+
+                        def buildInfo1 = server.upload(uploadSpec)
+                        server.publishBuildInfo(buildInfo1)
+	    }
+	    }
+}
 	}
 }
 	
