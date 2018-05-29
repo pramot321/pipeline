@@ -1,6 +1,6 @@
 branchName = "preprod"
 qaEmailId ="cjptech12@gmail.com"
-repositoryName = "dev"
+repositoryName = "test"
 waitingTime = 24
 pipeline{
 	agent any
@@ -24,7 +24,7 @@ stage('pramote artifact to QA') {
                                def uploadSpec  =  """{
                     "files": [
                 {
-"/var/lib/jenkins/workspace/cdpipeline_pipeline_master-6TVSGNXQ6SI4IIJXN33VZIFJ5SY7VMJ63E3Z6WF7IEE62OHHCKGQ/target/CounterWebApp.war/",
+"/var/lib/jenkins/workspace/cdpipeline_pipeline_master-6TVSGNXQ6SI4IIJXN33VZIFJ5SY7VMJ63E3Z6WF7IEE62OHHCKGQ/target/CounterWebApp.war",
                   "target": "${repositoryName}" 
                 }
                             ]
