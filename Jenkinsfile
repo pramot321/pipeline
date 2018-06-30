@@ -14,14 +14,30 @@ pipeline{
                     }
                 }
 		}
-		stage ('build') {
-			steps {
-				script {
-					sh 'mvn clean package'
-				}
-			}
-		}
-			
+	//	stage ('build') {
+	//		steps {
+	//			script {
+	//				sh 'mvn clean package'
+	//			}
+	//		}
+	//	}
+	
+		stage("build & SonarQube analysis") {
+         steps {
+              script {
+              withSonarQubeEnv('SonarQube') {
+                 sh 'mvn clean package sonar:sonar'
+              }
+          }
+      }
+        }
+        stage ("Junit") {
+            steps {
+                script {
+                    junit 'target/surefire-reports/*.xml'
+                }
+            }
+        }
 
  stage('pramote artifact to QA') {
             
