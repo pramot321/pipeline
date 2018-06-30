@@ -1,29 +1,38 @@
 branchName = "preprod"
 qaEmailId ="cjptech12@gmail.com"
-repositoryName = "test"
+repositoryName = "mahi"
 waitingTime = 24
 pipeline{
 	agent any
 	stages {
-		stage('Build'){
+		stage('checkout'){
 		    steps
                 {
                     script
                     {
-	sh 'mvn clean package'
+	git'https://github.com/pramot321/pipeline.git'
                     }
                 }
 		}
+		stage ('build') {
+			steps {
+				script {
+					sh 'mvn clean package'
+				}
+			}
+		}
+			
 
  stage('pramote artifact to QA') {
             
             steps {
             script {
-                def server = Artifactory.server ('test')
+                def server = Artifactory.server ('demo')
                                def uploadSpec  =  """{
                     "files": [
                 {
-                                  "pattern": "/var/lib/jenkins/workspace/cdpipeline_pipeline_master-6TVSGNXQ6SI4IIJXN33VZIFJ5SY7VMJ63E3Z6WF7IEE62OHHCKGQ/target/CounterWebApp.war",                   "target": "${repositoryName}" 
+                                  "pattern": "/var/lib/jenkins/workspace/pipeline369/target/flipkart-1.1-SNAPSHOT.jar",                   
+				  "target": "${repositoryName}" 
                 }
                             ]
                       }"""
